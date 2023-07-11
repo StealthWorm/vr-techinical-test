@@ -1,0 +1,12 @@
+<nav mat-tab-nav-bar>
+  <a mat-tab-link routerLink="/courses" [routerLinkActive]="'active'">Lista de
+    Cursos</a>
+  <a mat-tab-link routerLink='/students' [routerLinkActive]="'active'">Lista de
+    Alunos</a>
+  <a mat-tab-link routerLink='/registrations' [routerLinkActive]="'active'">Lista
+    de Matrículas</a>
+</nav>
+
+<div>
+  <router-outlet></router-outlet>
+</div>

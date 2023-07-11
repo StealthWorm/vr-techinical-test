@@ -1,0 +1,24 @@
+<div class="form-container" *ngIf="isModalOpen && request">
+  <div class="modal">
+    <div
+      style="position: relative; display: flex; justify-content: space-between;">
+      <h2>Criar Aluno</h2>
+      <button class="cancel" (click)="cancel()">X</button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" class="form">
+      <div class="form-group">
+        <div>
+          <label for="name">Nome do Aluno:</label>
+          <input
+            id="name"
+            name="name"
+            placeholder="Nome completo"
+            [(ngModel)]="request.name" />
+        </div>
+        <button class="btn-submit" type="submit"
+          [disabled]="!placeholdersFilled()">salvar</button>
+      </div>
+    </form>
+  </div>
+</div>

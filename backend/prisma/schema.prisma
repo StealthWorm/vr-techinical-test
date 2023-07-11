@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
+model Curso {
+  codigo    String   @id @default(uuid())
+  descricao String
+  ementa    String
+  createdAt DateTime @default(now())
+
+  cursoAlunos CursoAluno[]
+
+  @@index([descricao])
+  @@map("courses")
+}
+
+model Aluno {
+  codigo    String   @id @default(uuid())
+  nome      String
+  createdAt DateTime @default(now())
+
+  cursos CursoAluno[]
+
+  @@index([nome])
+  @@map("students")
+}
+
+model CursoAluno {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  codigoAluno String
+  codigoCurso String
+  aluno       Aluno  @relation(fields: [codigoAluno], references: [codigo])
+  curso       Curso  @relation(fields: [codigoCurso], references: [codigo])
+
+  @@unique([codigoAluno, codigoCurso])
+  @@map("registrations")
+}

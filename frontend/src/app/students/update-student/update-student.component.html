@@ -1,0 +1,24 @@
+<div class="form-container" *ngIf="isModalOpen && request">
+  <div class="modal">
+    <div
+      style="position: relative; display: flex; justify-content: space-between;">
+      <h2>Atualizar Aluno</h2>
+      <button class="cancel" (click)="cancel()">X</button>
+    </div>
+
+    <form (ngSubmit)="update()" class="form">
+      <div class="form-group">
+        <div>
+          <label for="name">Nome:</label>
+          <input
+            id="name"
+            name="name"
+            placeholder="Nome completo do aluno"
+            [(ngModel)]="request.name" />
+        </div>
+        <button class="btn-submit" type="submit"
+          >salvar</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="form-container" *ngIf="isModalOpen && request">
+  <div class="modal">
+    <div
+      style="position: relative; display: flex; justify-content: space-between;">
+      <h2>Criar nova Matrícula</h2>
+      <button class="cancel" (click)="cancel()">X</button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" class="form">
+      <mat-form-field>
+        <mat-label>Alunos Disponíveis</mat-label>
+        <mat-select [(value)]="request.codStudent" [formControl]="studentControl">
+          <mat-option *ngFor="let student of students" [value]="student._id">
+            {{student.props.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="studentControl.hasError('required')">É necessário escolher um aluno</mat-error>
+      </mat-form-field>
+      <mat-form-field required>
+        <mat-label>Cursos Disponíveis</mat-label>
+        <mat-select [(value)]="request.codCourse" [formControl]="courseControl">
+          <mat-option *ngFor="let course of courses" [value]="course._id">
+            {{course.props.description}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="studentControl.hasError('required')">É necessário escolher um curso</mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <button class="btn-submit" type="submit" >salvar</button>
+    </form>
+  </div>
+</div>

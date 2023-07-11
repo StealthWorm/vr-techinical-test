@@ -1,0 +1,82 @@
+<div class="form-container" *ngIf="isModalOpen && request">
+  <div class="modal">
+    <div
+      style="position: relative; display: flex; justify-content: space-between;">
+      <h2>Criar Curso</h2>
+      <button class="cancel" (click)="cancel()">X</button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" class="form">
+      <div class="form-group">
+        <div>
+          <label for="description">Descrição:</label>
+          <input
+            id="description"
+            name="description"
+            placeholder="Descrição do curso"
+            [(ngModel)]="request.description" />
+        </div>
+        <div>
+          <label for="program">Ementa:</label>
+          <input
+            id="program"
+            placeholder="Ementa do curso"
+            [(ngModel)]="request.program"
+            name="program" />
+        </div>
+        <button class="btn-submit" type="submit"
+          [disabled]="!placeholdersFilled()">salvar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- *ngIf="isModalOpen" -->
+<!-- <div class="form-container" >
+  <form novalidate
+    [formGroup]="myform"
+    (ngSubmit)="onSubmit()"
+    class="modal">
+    <button class="cancel" (click)="open()">X</button>
+    <fieldset formGroupName="course">
+      <div class="form-group"
+        [ngClass]="{
+        'has-danger': description.invalid && (description.dirty || description.touched),
+        'has-success': description.valid && (description.dirty || description.touched)
+      }">
+        <label for="description">Descrição</label>
+        <input type="text"
+          class="form-control"
+          formControlName="description"
+          id="description"
+          required>
+        <div class="form-control-feedback"
+          *ngIf="description.errors && (description.dirty || description.touched)">
+          <p *ngIf="description.errors['required']">Descrição é obrigatória</p>
+        </div>
+      </div>
+
+      <div class="form-group"
+        [ngClass]="{
+        'has-danger': program.invalid && (program.dirty || program.touched),
+        'has-success': program.valid && (program.dirty || program.touched)
+      }">
+        <label for="program">Ementa</label>
+        <input
+          type="text"
+          id="program"
+          class="form-control"
+          formControlName="program"
+          required>
+        <div class="form-control-feedback"
+          *ngIf="program.errors && (program.dirty || program.touched)">
+          <p *ngIf="program.errors['required']">Ementa é obrigatória</p>
+        </div>
+      </div>
+      <mat-form-field appearance="outline" [ngClass]="{'mat-form-field-valid': myform?.valid }"></mat-form-field>
+    </fieldset>
+    <button type="submit"
+      class="btn-submit">Submit
+    </button>
+  </form>
+</div> -->

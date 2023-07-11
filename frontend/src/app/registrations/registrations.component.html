@@ -1,0 +1,84 @@
+<div class="container">
+  <div>
+    <button class="include" (click)="openModal()"
+      aria-label="Example icon button with a home icon">
+      <p>incluir</p>
+      <mat-icon aria-hidden="false"
+        fontIcon="home">add</mat-icon>
+    </button>
+  </div>
+  <div class="table-container">
+    <table matSort mat-table [dataSource]="dataSource" class="table">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let registration" class="small-column">{{
+          registration.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef>Data de Criação</th>
+        <td mat-cell *matCellDef="let registration">{{ registration.createdAt |
+          date:'dd/MM/yyyy' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="descricao">
+        <th mat-header-cell *matHeaderCellDef>Descrição do curso</th>
+        <td mat-cell *matCellDef="let registration">{{
+          registration.curso.descricao }}</td>
+      </ng-container>
+
+      <!-- Syllabus Column -->
+      <ng-container matColumnDef="ementa">
+        <th mat-header-cell *matHeaderCellDef>Ementa do curso</th>
+        <td mat-cell *matCellDef="let registration">{{ registration.curso.ementa
+          }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome do Aluno</th>
+        <td mat-cell *matCellDef="let registration">{{ registration.aluno.nome
+          }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let registration" class="small-column">
+          <div
+            style="display: flex; justify-content: center; align-items: center;">
+            <button class="action" color="warn"
+              (click)="deleteRegistration(registration.id)"
+              style="background-color: tomato;">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row
+        *matHeaderRowDef="displayedColumns;  sticky: true;"></tr>
+      <tr mat-row *matRowDef="let registration; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">Não foi encontrado nada</td>
+      </tr>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10"
+    showFirstLastButtons>
+  </mat-paginator>
+</div>
+
+<app-create-registration
+  *ngIf="!reg_id && type=='create'"
+  [isModalOpen]="isModalOpen"
+  (openModal)="openModal()">
+</app-create-registration>
+
+<app-delete-registration
+  *ngIf="reg_id && type=='delete'"
+  [id]="reg_id"
+  [type]="type"
+  [isModalOpen]="isModalOpen"
+  (openModal)="openModal()">
+</app-delete-registration>

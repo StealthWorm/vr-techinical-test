@@ -1,0 +1,93 @@
+<div class="container">
+  <div>
+    <button class="include" (click)="openModal()"
+      aria-label="Example icon button with a home icon">
+      <p>incluir</p>
+      <mat-icon aria-hidden="false"
+        fontIcon="home">add</mat-icon>
+    </button>
+  </div>
+  <!-- <button (click)="openModal()" class="btn-add">+</button> -->
+  <!-- <table *ngIf="responseCourses">
+    <thead>
+      <td>Decrição</td>
+      <td>Ementa</td>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of responseCourses.courses">
+        <td>{{course.props.description}}</td>
+        <td>{{course.props.program}}</td>
+        <td>
+          <button (click)="openModal(course._id)">EDITAR</button>
+          <a routerLink="/courses/update/{{course._id}}">EDITAR</a>
+          <a routerLink="/courses/delete/{{course._id}}">REMOVER</a>
+        </td>
+      </tr>
+    </tbody>
+  </table> -->
+
+  <div class="table-container">
+    <table matSort mat-table [dataSource]="dataSource" class="table">
+
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef> Course ID </th>
+        <td mat-cell *matCellDef="let course"> {{ course._id }} </td>
+      </ng-container>
+
+      <div *ngFor="let column of displayedColumns">
+
+        <ng-container
+          matColumnDef="{{column}}">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ column }}
+          </th>
+          <td mat-cell *matCellDef="let course">
+            {{ course.props[column] }}
+            <div *ngIf="column === 'actions'" style="display: flex; gap: 1rem;">
+              <!-- <a routerLink="/courses/update/{{course._id}}">EDITAR</a>
+              <a routerLink="/courses/delete/{{course._id}}">REMOVER</a> -->
+              <button class="action" color="primary"
+                (click)="editCourse(course._id)"
+                style="background-color: indigo;">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button class="action" color="warn"
+                (click)="deleteCourse(course._id)"
+                style="background-color: tomato;">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+      </div>
+      <tr mat-header-row
+        *matHeaderRowDef="displayedColumns;  sticky: true;"></tr>
+      <tr mat-row *matRowDef="let course; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">Não foi encontrado nada</td>
+      </tr>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10"
+    showFirstLastButtons>
+  </mat-paginator>
+</div>
+
+<app-update-course
+  *ngIf="course_id && type=='update'"
+  [id]="course_id"
+  [isModalOpen]="isModalOpen"
+  (openModal)="openModal()">
+</app-update-course>
+
+<app-create-course
+  *ngIf="!course_id && type=='create'"
+  [isModalOpen]="isModalOpen"
+  (openModal)="openModal()">
+</app-create-course>
+
+<app-delete-course
+  *ngIf="course_id && type=='delete'"
+  [id]="course_id"
+  [type]="type"
+  [isModalOpen]="isModalOpen"
+  (openModal)="openModal()"></app-delete-course>

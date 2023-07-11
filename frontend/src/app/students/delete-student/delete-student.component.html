@@ -1,0 +1,26 @@
+<!-- <h2>Voce deseja remover este usuário?</h2> -->
+
+<!-- <div *ngIf="isModalOpen && course">
+  <label>Descrição: <strong>{{course._id}}</strong></label>
+  <br><br>
+  <label>Descrição: <strong>{{course.props.description}}</strong></label>
+  <br><br>
+  <label>Ementa: <strong>{{course.props.program}}</strong></label>
+  <br><br>
+  <button (click)="delete()">Confirmar</button>
+  <button (click)="cancel()">Cancelar</button>
+</div> -->
+
+<div class="form-container" *ngIf="isModalOpen && student">
+  <div class="modal">
+    <div
+      style="position: relative; display: flex; justify-content: space-between;">
+      <h2>Voce deseja remover este aluno?</h2>
+    </div>
+
+    <div class="buttons">
+      <button  mat-flat-button (click)="cancel()">Cancelar</button>
+      <button  mat-flat-button (click)="delete()" color="success">Confirmar</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+.container {
+  position: relative;
+  display: flex;
+  height: 100%;
+  gap: 2rem;
+  flex-direction: column;
+  padding: 1rem;
+  z-index: 0;
+}
+
+mat-icon {
+  color: #fff;
+  font-weight: bold;
+}
+
+.table-container {
+  height: 28rem;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  overflow: scroll;
+  margin: auto;
+  border: 1px solid #333;
+  z-index: 0;
+}
+
+table th {
+  color: orange;
+  text-transform: uppercase;
+}
+
+.include {
+  display: flex;
+  float: right;
+  width: fit-content;
+  padding: .6rem;
+  border: none;
+  border-radius: .5rem;
+  background-color: #ffa500;
+  align-items: center;
+  text-transform: uppercase;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #fff;
+  transition: .5s;
+  cursor: pointer;
+}
+
+.include p {
+  margin: 1px 0 0 0;
+  letter-spacing: 4px;
+}
+
+.include:hover {
+  background-color: #E19200;
+}
+
+.action {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  padding: .5rem;
+  outline: none;
+  transition: .5s;
+}
+
+.action:hover {
+  filter: brightness(80%);
+}
+
+table td {
+  transition: .5s;
+}
+
+table tr:hover td {
+  background-color: rgba(255, 166, 0, 0.205);
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: transparent;
+  border-radius: 0;
+  height: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 166, 0, 0.426);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: orange;
+}

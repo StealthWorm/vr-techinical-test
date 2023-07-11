@@ -1,0 +1,13 @@
+nav.mat-tab-nav-bar a {
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+  border-bottom: 2px solid transparent;
+  transition: .5s;
+}
+
+nav.mat-tab-nav-bar a.active {
+  border-bottom-color: #ffa600;
+  font-weight: bold;
+  color: #ffa600;
+}

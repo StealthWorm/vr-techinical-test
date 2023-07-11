@@ -1,0 +1,13 @@
+<div class="form-container" *ngIf="isModalOpen && course">
+  <div class="modal">
+    <div
+      style="position: relative; display: flex; justify-content: space-between;">
+      <h2>Voce deseja remover este curso?</h2>
+    </div>
+
+    <div class="buttons">
+      <button  mat-flat-button (click)="cancel()">Cancelar</button>
+      <button  mat-flat-button (click)="delete()" color="success">Confirmar</button>
+    </div>
+  </div>
+</div>
